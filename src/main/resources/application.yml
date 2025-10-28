@@ -2,12 +2,14 @@ spring:
   application:
     name: channel-server
 
-  # Redis Configuration (Upstash or Local)
-  redis:
-    host: ${SPRING_REDIS_HOST:localhost}
-    port: ${SPRING_REDIS_PORT:6379}
-    password: ${SPRING_REDIS_PASSWORD:}
-    ssl: ${SPRING_REDIS_SSL:false}
+  # Redis Configuration (Upstash)
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+      password: ${SPRING_REDIS_PASSWORD:}
+      ssl:
+        enabled: ${SPRING_REDIS_SSL:true}
 
 # ───────────────
 # Server Settings
@@ -34,9 +36,8 @@ jwt:
   secret: ${JWT_SECRET_KEY:supreme-solutions-secret-key-9876543210@#jwt}
 
 # ───────────────
-# Optional - Logging & Profiles
+# Logging & Profiles
 # ───────────────
 logging:
   level:
     root: INFO
-
