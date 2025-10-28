@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: channel-server
+
+  # Redis Configuration (Upstash or Local)
+  redis:
+    host: ${SPRING_REDIS_HOST:localhost}
+    port: ${SPRING_REDIS_PORT:6379}
+    password: ${SPRING_REDIS_PASSWORD:}
+    ssl: ${SPRING_REDIS_SSL:false}
+
+# ───────────────
+# Server Settings
+# ───────────────
+server:
+  port: ${SERVER_PORT:8083}
+
+# ───────────────
+# Eureka Client
+# ───────────────
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    hostname: ${EUREKA_HOSTNAME:localhost}
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${server.port}
+
+# ───────────────
+# JWT Secret (read from env)
+# ───────────────
+jwt:
+  secret: ${JWT_SECRET_KEY:supreme-solutions-secret-key-9876543210@#jwt}
+
+# ───────────────
+# Optional - Logging & Profiles
+# ───────────────
+logging:
+  level:
+    root: INFO
+
