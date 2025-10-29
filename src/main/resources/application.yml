@@ -26,17 +26,12 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: ${EUREKA_URL:https://eureka-server-sk4j.onrender.com/eureka/}
-
   instance:
-    prefer-ip-address: false
-    hostname: ${RENDER_EXTERNAL_HOSTNAME:${spring.application.name}}
+    prefer-ip-address: true
+    hostname: ${spring.application.name}
     instance-id: ${spring.application.name}:${random.value}
     metadata-map:
-      management.port: 443
-    status-page-url: https://${RENDER_EXTERNAL_HOSTNAME:${spring.application.name}}/actuator/health
-    home-page-url: https://${RENDER_EXTERNAL_HOSTNAME:${spring.application.name}}/
-    health-check-url: https://${RENDER_EXTERNAL_HOSTNAME:${spring.application.name}}/actuator/health
-
+      management.port: ${server.port}
 
 # ───────────────
 # JWT Secret (read from env)
